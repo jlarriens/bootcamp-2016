@@ -20,6 +20,16 @@ boxplot(weight~Diet,data=ChickWeight)
 
 
 #Using a for-loop, plot the growth of each chick in a different color, all on the same plot
+plot.new()
+colors<-rainbow(50)
+for (i in 1:50){
+  chick <- ChickWeight[ChickWeight$Chick==i,1]
+  lines(chick,col=colors[i])
+}
 
+#and I recently learned we can also do this in ggplot! 
+library(ggplot2)
+p <- ggplot(data=ChickWeight, aes(y=weight, x=Time))
+p + geom_point(colour = factor(ChickWeight$Chick))
 
 
